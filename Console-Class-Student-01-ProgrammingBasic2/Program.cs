@@ -22,6 +22,52 @@
             course3.CourseCode = "DBMS";
             course3.CourseCredit = 2;
 
+            List<Course> courses = new List<Course>();
+            courses.Add(course);
+            courses.Add(course2);
+            courses.Add(course3);
+
+            Console.WriteLine("Course List:" + courses.Count() + " courses in my School");
+            foreach (Course c in courses)
+            {
+                Console.WriteLine(
+                    $"Course ID: {c.CourseID}, " +
+                    $"Course Name: {c.CourseName}, " +
+                    $"Course Code: {c.CourseCode}, " +
+                    $"Course Credit: {c.CourseCredit}");
+            }
+
+            //for (int i = 0; i < courses.Count(); i++)
+            //{
+            //    Course c = courses[i];
+            //    Console.WriteLine(
+            //        $"Course ID: {c.CourseID}, " +
+            //        $"Course Name: {c.CourseName}, " +
+            //        $"Course Code: {c.CourseCode}, " +
+            //        $"Course Credit: {c.CourseCredit}");
+            //}
+
+
+            //while (true)
+            //{
+            //    Console.WriteLine("Enter Course ID to search:");
+            //    int courseID = Convert.ToInt32(Console.ReadLine());
+            //    Course foundCourse = courses.FirstOrDefault(c => c.CourseID == courseID);
+                
+            //    if (foundCourse != null)
+            //    {
+            //        Console.WriteLine(
+            //            $"Course ID: {foundCourse.CourseID}, " +
+            //            $"Course Name: {foundCourse.CourseName}, " +
+            //            $"Course Code: {foundCourse.CourseCode}, " +
+            //            $"Course Credit: {foundCourse.CourseCredit}");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Course not found.");
+            //    }
+            //}
+
             Console.ReadLine();
         }
     }
