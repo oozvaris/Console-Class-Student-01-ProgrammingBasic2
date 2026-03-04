@@ -48,25 +48,45 @@
             //}
 
 
-            //while (true)
-            //{
-            //    Console.WriteLine("Enter Course ID to search:");
-            //    int courseID = Convert.ToInt32(Console.ReadLine());
-            //    Course foundCourse = courses.FirstOrDefault(c => c.CourseID == courseID);
-                
-            //    if (foundCourse != null)
-            //    {
-            //        Console.WriteLine(
-            //            $"Course ID: {foundCourse.CourseID}, " +
-            //            $"Course Name: {foundCourse.CourseName}, " +
-            //            $"Course Code: {foundCourse.CourseCode}, " +
-            //            $"Course Credit: {foundCourse.CourseCredit}");
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("Course not found.");
-            //    }
-            //}
+            while (true)
+            {
+                Console.WriteLine("Enter Course ID to search:");
+                int courseID = Convert.ToInt32(Console.ReadLine());
+                Course foundCourse = courses.FirstOrDefault(c => c.CourseID == courseID);
+
+                if (foundCourse != null)
+                {
+                    Console.WriteLine(
+                        $"Course ID: {foundCourse.CourseID}, " +
+                        $"Course Name: {foundCourse.CourseName}, " +
+                        $"Course Code: {foundCourse.CourseCode}, " +
+                        $"Course Credit: {foundCourse.CourseCredit}");
+                }
+                else
+                {
+                    Console.WriteLine("Course not found.");
+                }
+            }
+
+
+            while (true)
+            {
+
+                Console.WriteLine("Enter Course Name to search:");
+                string courseName = Console.ReadLine();
+                List<Course> lstCourse = courses.Where(c => c.CourseName.Contains(courseName)).ToList();
+
+                foreach (Course c in lstCourse)
+                {
+                    Console.WriteLine(
+                        $"Course ID: {c.CourseID}, " +
+                        $"Course Name: {c.CourseName}, " +
+                        $"Course Code: {c.CourseCode}, " +
+                        $"Course Credit: {c.CourseCredit}");
+                }
+
+
+            }
 
             Console.ReadLine();
         }
