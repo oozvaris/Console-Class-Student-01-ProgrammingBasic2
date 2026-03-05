@@ -11,7 +11,7 @@ namespace Console_Class_Student_01_ProgrammingBasic2
         public int CourseID { get; set; }
         public string CourseName { get; set; }
         public string CourseCode { get; set; }
-        public int CourseCredit { get; set; }
+        public int CourseCredit { get; set; }        
 
         public void DisplayCourseInfo()
         {
@@ -38,10 +38,11 @@ namespace Console_Class_Student_01_ProgrammingBasic2
             return courses;
         }
 
-        public Course FindCourseByID(List<Course> courses, int courseID)
+        public Course? FindCourseByID(List<Course> courses, int courseID)
         {
             return courses.FirstOrDefault(c => c.CourseID == courseID);
         }
+        
 
         public List<Course> SearchCourseByName(List<Course> courses, string courseName)
         {
