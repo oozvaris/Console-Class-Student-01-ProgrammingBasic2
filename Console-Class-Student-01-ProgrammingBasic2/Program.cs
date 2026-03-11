@@ -36,6 +36,7 @@
                     $"Course Code: {c.CourseCode}, " +
                     $"Course Credit: {c.CourseCredit}");
             }
+            // Console.ReadLine();
 
             //for (int i = 0; i < courses.Count(); i++)
             //{
@@ -48,45 +49,86 @@
             //}
 
 
-            while (true)
-            {
-                Console.WriteLine("Enter Course ID to search:");
-                int courseID = Convert.ToInt32(Console.ReadLine());
-                Course foundCourse = courses.FirstOrDefault(c => c.CourseID == courseID);
+            //while (true)
+            //{
+            //    Console.WriteLine("Enter Course ID to search:");
+            //    int courseID = Convert.ToInt32(Console.ReadLine());
+            //    Course foundCourse = courses.FirstOrDefault(c => c.CourseID == courseID);
 
-                if (foundCourse != null)
+            //    if (foundCourse != null)
+            //    {
+            //        Console.WriteLine(
+            //            $"Course ID: {foundCourse.CourseID}, " +
+            //            $"Course Name: {foundCourse.CourseName}, " +
+            //            $"Course Code: {foundCourse.CourseCode}, " +
+            //            $"Course Credit: {foundCourse.CourseCredit}");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Course not found.");
+            //    }
+            //}
+
+
+            //while (true)
+            //{
+
+            //    Console.WriteLine("Enter Course Name to search:");
+            //    string courseName = Console.ReadLine();
+            //    List<Course> lstCourse = courses.Where(
+            //        c => c.CourseName.Contains(courseName)
+            //        ).ToList();
+
+            //    foreach (Course c in lstCourse)
+            //    {
+            //        Console.WriteLine(
+            //            $"Course ID: {c.CourseID}, " +
+            //            $"Course Name: {c.CourseName}, " +
+            //            $"Course Code: {c.CourseCode}, " +
+            //            $"Course Credit: {c.CourseCredit}");
+            //    }
+
+
+            //}
+
+            Course courseVal = new Course();
+
+            // Display menu
+            bool exit = false;
+            while (!exit)
+            {
+                Console.WriteLine("Menu:");
+                Console.WriteLine("1. Display all courses");
+                Console.WriteLine("2. Search course by ID");
+                Console.WriteLine("3. Search course by Name");
+                Console.WriteLine("4. Exit");
+                Console.Write("Enter your choice: ");
+                int choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
                 {
-                    Console.WriteLine(
-                        $"Course ID: {foundCourse.CourseID}, " +
-                        $"Course Name: {foundCourse.CourseName}, " +
-                        $"Course Code: {foundCourse.CourseCode}, " +
-                        $"Course Credit: {foundCourse.CourseCredit}");
-                }
-                else
-                {
-                    Console.WriteLine("Course not found.");
+                    case 1:                        
+                        courseVal.GetCourseList();
+                        break;
+                    case 2:
+                        Console.Write("Enter Course ID to search: ");
+                        int courseID = Convert.ToInt32(Console.ReadLine());
+                        courseVal.FindCourseByID(courses, courseID);
+                        break;
+                    case 3:
+                        Console.Write("Enter Course Name to search: ");
+                        string courseName = Console.ReadLine();
+                        courseVal.SearchCourseByName(courses, courseName);
+                        break;
+                    case 4:
+                        exit = true;
+                        Console.WriteLine("Exiting the program. Goodbye!");
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice. Please try again.");
+                        break;
                 }
             }
 
-
-            while (true)
-            {
-
-                Console.WriteLine("Enter Course Name to search:");
-                string courseName = Console.ReadLine();
-                List<Course> lstCourse = courses.Where(c => c.CourseName.Contains(courseName)).ToList();
-
-                foreach (Course c in lstCourse)
-                {
-                    Console.WriteLine(
-                        $"Course ID: {c.CourseID}, " +
-                        $"Course Name: {c.CourseName}, " +
-                        $"Course Code: {c.CourseCode}, " +
-                        $"Course Credit: {c.CourseCredit}");
-                }
-
-
-            }
 
             Console.ReadLine();
         }
