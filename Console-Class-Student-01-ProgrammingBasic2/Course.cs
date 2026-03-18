@@ -31,10 +31,18 @@ namespace Console_Class_Student_01_ProgrammingBasic2
             return this;
         }
 
-        public List<Course> GetCourseList()
+        public List<Course> GetCourseList(List<Course> courses)
         {
-            List<Course> courses = new List<Course>();
-            courses.Add(this);
+            // List<Course> courses = new List<Course>();
+            // courses.Add(this);
+            foreach (Course c in courses)
+            {
+                Console.WriteLine(
+                    $"Course ID: {c.CourseID}, " +
+                    $"Course Name: {c.CourseName}, " +
+                    $"Course Code: {c.CourseCode}, " +
+                    $"Course Credit: {c.CourseCredit}");
+            }
             return courses;
         }
 

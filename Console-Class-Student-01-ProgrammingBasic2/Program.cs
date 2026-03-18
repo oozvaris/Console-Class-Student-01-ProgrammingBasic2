@@ -101,13 +101,14 @@
                 Console.WriteLine("1. Display all courses");
                 Console.WriteLine("2. Search course by ID");
                 Console.WriteLine("3. Search course by Name");
-                Console.WriteLine("4. Exit");
+                Console.WriteLine("4. Course Registration");
+                Console.WriteLine("5. Exit");
                 Console.Write("Enter your choice: ");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
                     case 1:                        
-                        courseVal.GetCourseList();
+                        courseVal.GetCourseList(courses);
                         break;
                     case 2:
                         Console.Write("Enter Course ID to search: ");
@@ -119,7 +120,19 @@
                         string courseName = Console.ReadLine();
                         courseVal.SearchCourseByName(courses, courseName);
                         break;
-                    case 4:
+                    case 4:                                              
+                        Console.Write("Enter Course ID: ");
+                        int newCourseID = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Enter Course Name: ");
+                        string newCourseName = Console.ReadLine();
+                        Console.Write("Enter Course Code: ");
+                        string newCourseCode = Console.ReadLine();
+                        Console.Write("Enter Course Credit: ");
+                        int newCourseCredit = Convert.ToInt32(Console.ReadLine());
+                        Course newCourseVal = courseVal.RegisterCourse(newCourseID, newCourseName, newCourseCode, newCourseCredit);
+                        courses.Add(newCourseVal);
+                        break;
+                    case 5:
                         exit = true;
                         Console.WriteLine("Exiting the program. Goodbye!");
                         break;
