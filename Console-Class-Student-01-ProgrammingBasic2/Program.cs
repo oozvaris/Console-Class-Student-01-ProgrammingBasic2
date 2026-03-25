@@ -1,4 +1,6 @@
-﻿namespace Console_Class_Student_01_ProgrammingBasic2
+﻿using System.Net.Http.Headers;
+
+namespace Console_Class_Student_01_ProgrammingBasic2
 {
     internal class Program
     {
@@ -92,6 +94,10 @@
             //}
 
             Course courseVal = new Course();
+            Student studentVal = new Student();
+
+            List<Student> studentList = new List<Student>();
+
 
             // Display menu
             bool exit = false;
@@ -101,7 +107,12 @@
                 Console.WriteLine("1. Display all courses");
                 Console.WriteLine("2. Search course by ID");
                 Console.WriteLine("3. Search course by Name");
-                Console.WriteLine("4. Exit");
+
+                Console.WriteLine("4. Display all students");
+                Console.WriteLine("5. Register a new student");
+
+
+                Console.WriteLine("10. Exit");
                 Console.Write("Enter your choice: ");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
@@ -117,9 +128,30 @@
                     case 3:
                         Console.Write("Enter Course Name to search: ");
                         string courseName = Console.ReadLine();
-                        courseVal.SearchCourseByName(courses, courseName);
+                        courseVal.SearchCourseByName(courses, courseName);                        
+                        
                         break;
+
                     case 4:
+
+                        studentVal.GetStudentList(studentList);
+                                           
+                        break;
+                    case 5:
+                        studentVal = new Student();
+                        // deploy student registration logic here
+                        Console.Write("Enter Student ID: "); 
+                        int studentID = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Enter Student Name: ");
+                        string studentName = Console.ReadLine();
+                        Console.Write("Enter Student Surname: ");
+                        string studentSurname = Console.ReadLine();
+                        Console.Write("Enter Student Email: ");
+                        string studentEmail = Console.ReadLine();
+                        studentVal = studentVal.RegisterStudent(studentID, studentName, studentSurname, studentEmail);
+                        studentList.Add(studentVal);
+                        break;
+                    case 10:
                         exit = true;
                         Console.WriteLine("Exiting the program. Goodbye!");
                         break;

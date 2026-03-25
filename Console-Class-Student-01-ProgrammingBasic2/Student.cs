@@ -16,5 +16,29 @@ namespace Console_Class_Student_01_ProgrammingBasic2
 
         public string StudentEmail { get; set; }
 
+        public void GetStudentList(List<Student> studentList)
+        {
+            foreach (Student s in studentList)
+            {
+                Console.WriteLine(
+                    $"Student ID: {s.StudentID}, " +
+                    $"Student Name: {s.StudentName}, " +
+                    $"Student Surname: {s.StudentSurname}, " +
+                    $"Student Email: {s.StudentEmail}");
+            }
+        }
+
+        public Student RegisterStudent(int studentID, string studentName, 
+            string studentSurname, string studentEmail)
+        {
+            StudentID = studentID;
+            StudentName = studentName;
+            StudentSurname = studentSurname;
+            StudentEmail = studentEmail;
+            return this;
+        }
+
+
+
     }
 }
