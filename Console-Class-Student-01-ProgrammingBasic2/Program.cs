@@ -105,11 +105,12 @@ namespace Console_Class_Student_01_ProgrammingBasic2
             {
                 Console.WriteLine("Menu:");
                 Console.WriteLine("1. Display all courses");
-                Console.WriteLine("2. Search course by ID");
-                Console.WriteLine("3. Search course by Name");
+                Console.WriteLine("2. Register a new course");
+                Console.WriteLine("3. Search course by ID");
+                Console.WriteLine("4. Search course by Name");
 
-                Console.WriteLine("4. Display all students");
-                Console.WriteLine("5. Register a new student");
+                Console.WriteLine("5. Display all students");
+                Console.WriteLine("6. Register a new student");
 
 
                 Console.WriteLine("10. Exit");
@@ -118,26 +119,43 @@ namespace Console_Class_Student_01_ProgrammingBasic2
                 switch (choice)
                 {
                     case 1:                        
-                        courseVal.GetCourseList();
+                        courseVal.GetCourseList(courses);
                         break;
+
                     case 2:
-                        Console.Write("Enter Course ID to search: ");
+                        courseVal = new Course();
+                        Console.Write("Enter Course ID: ");
                         int courseID = Convert.ToInt32(Console.ReadLine());
-                        courseVal.FindCourseByID(courses, courseID);
-                        break;
-                    case 3:
-                        Console.Write("Enter Course Name to search: ");
+                        Console.Write("Enter Course Name: ");
                         string courseName = Console.ReadLine();
-                        courseVal.SearchCourseByName(courses, courseName);                        
+                        Console.Write("Enter Course Code: ");
+                        string courseCode = Console.ReadLine();
+                        Console.Write("Enter Course Credit: ");
+                        int courseCredit = Convert.ToInt32(Console.ReadLine());
+                        courseVal = courseVal.RegisterCourse(courseID, courseName, courseCode, courseCredit);
+                        courses.Add(courseVal);
+                        break;
+
+
+                    case 3:
+                        Console.Write("Enter Course ID to search: ");
+                        int courseID_ = Convert.ToInt32(Console.ReadLine());
+                        courseVal = courseVal.FindCourseByID(courses, courseID_);
+                        courseVal.DisplayCourseInfo();
+                        break;
+                    case 4:
+                        Console.Write("Enter Course Name to search: ");
+                        string courseName_ = Console.ReadLine();
+                        courseVal.SearchCourseByName(courses, courseName_);                        
                         
                         break;
 
-                    case 4:
+                    case 5:
 
                         studentVal.GetStudentList(studentList);
                                            
                         break;
-                    case 5:
+                    case 6:
                         studentVal = new Student();
                         // deploy student registration logic here
                         Console.Write("Enter Student ID: "); 

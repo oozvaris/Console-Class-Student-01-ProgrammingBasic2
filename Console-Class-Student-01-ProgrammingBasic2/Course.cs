@@ -29,13 +29,21 @@ namespace Console_Class_Student_01_ProgrammingBasic2
             CourseCode = courseCode;
             CourseCredit = courseCredit;
             return this;
+
         }
 
-        public List<Course> GetCourseList()
+        public void GetCourseList(List<Course> courseList)
         {
-            List<Course> courses = new List<Course>();
-            courses.Add(this);
-            return courses;
+
+            foreach (Course c in courseList)
+            {
+                Console.WriteLine(
+                    $"Course ID: {c.CourseID}" +
+                    $", Course Name: {c.CourseName}" +
+                    $", Course Code: {c.CourseCode}" +
+                    $", Course Credit: {c.CourseCredit}"
+                    );
+            }
         }
 
         public Course? FindCourseByID(List<Course> courses, int courseID)
