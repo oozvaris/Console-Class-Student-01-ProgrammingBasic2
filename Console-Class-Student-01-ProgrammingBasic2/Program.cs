@@ -98,6 +98,7 @@ namespace Console_Class_Student_01_ProgrammingBasic2
 
             List<Student> studentList = new List<Student>();
 
+            //apply try catch block to handle exceptions for user input
 
             // Display menu
             bool exit = false;
