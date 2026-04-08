@@ -16,6 +16,15 @@ namespace Console_Class_Student_01_ProgrammingBasic2
 
         public string StudentEmail { get; set; }
 
+        public void DisplayStudentInfo()
+        {
+            Console.WriteLine(
+                $"Student ID: {StudentID}, " +
+                $"Student Name: {StudentName}, " +
+                $"Student Code: {StudentSurname}, " +
+                $"Student Email...: {StudentEmail}");
+        }
+
         public void GetStudentList(List<Student> studentList)
         {
             foreach (Student s in studentList)
@@ -36,6 +45,11 @@ namespace Console_Class_Student_01_ProgrammingBasic2
             StudentSurname = studentSurname;
             StudentEmail = studentEmail;
             return this;
+        }
+
+        public Student? FindStudentByID(List<Student> students, int studentID)
+        {
+            return students.FirstOrDefault(c => c.StudentID == studentID);
         }
 
 

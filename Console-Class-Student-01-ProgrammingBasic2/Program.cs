@@ -111,6 +111,7 @@ namespace Console_Class_Student_01_ProgrammingBasic2
 
                 Console.WriteLine("5. Display all students");
                 Console.WriteLine("6. Register a new student");
+                Console.WriteLine("7. Search Student by ID");
 
 
                 Console.WriteLine("10. Exit");
@@ -118,7 +119,7 @@ namespace Console_Class_Student_01_ProgrammingBasic2
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
-                    case 1:                        
+                    case 1:
                         courseVal.GetCourseList(courses);
                         break;
 
@@ -146,19 +147,19 @@ namespace Console_Class_Student_01_ProgrammingBasic2
                     case 4:
                         Console.Write("Enter Course Name to search: ");
                         string courseName_ = Console.ReadLine();
-                        courseVal.SearchCourseByName(courses, courseName_);                        
-                        
+                        courseVal.SearchCourseByName(courses, courseName_);
+
                         break;
 
                     case 5:
 
                         studentVal.GetStudentList(studentList);
-                                           
+
                         break;
                     case 6:
                         studentVal = new Student();
                         // deploy student registration logic here
-                        Console.Write("Enter Student ID: "); 
+                        Console.Write("Enter Student ID: ");
                         int studentID = Convert.ToInt32(Console.ReadLine());
                         Console.Write("Enter Student Name: ");
                         string studentName = Console.ReadLine();
@@ -169,6 +170,12 @@ namespace Console_Class_Student_01_ProgrammingBasic2
                         studentVal = studentVal.RegisterStudent(studentID, studentName, studentSurname, studentEmail);
                         studentList.Add(studentVal);
                         break;
+                    case 7:
+                        Console.Write("Enter Student ID to search: ");
+                        int studentID_ = Convert.ToInt32(Console.ReadLine());
+                        studentVal = studentVal.FindStudentByID(studentList, studentID_);
+                        studentVal.DisplayStudentInfo();
+                        break;
                     case 10:
                         exit = true;
                         Console.WriteLine("Exiting the program. Goodbye!");
@@ -178,7 +185,6 @@ namespace Console_Class_Student_01_ProgrammingBasic2
                         break;
                 }
             }
-
 
             Console.ReadLine();
         }
