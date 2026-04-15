@@ -104,86 +104,131 @@ namespace Console_Class_Student_01_ProgrammingBasic2
             bool exit = false;
             while (!exit)
             {
-                Console.WriteLine("Menu:");
-                Console.WriteLine("1. Display all courses");
-                Console.WriteLine("2. Register a new course");
-                Console.WriteLine("3. Search course by ID");
-                Console.WriteLine("4. Search course by Name");
-
-                Console.WriteLine("5. Display all students");
-                Console.WriteLine("6. Register a new student");
-                Console.WriteLine("7. Search Student by ID");
-
-
-                Console.WriteLine("10. Exit");
-                Console.Write("Enter your choice: ");
-                int choice = Convert.ToInt32(Console.ReadLine());
-                switch (choice)
+                try
                 {
-                    case 1:
-                        courseVal.GetCourseList(courses);
-                        break;
+                    Console.WriteLine("Menu:");
+                    Console.WriteLine("1. Display all courses");
+                    Console.WriteLine("2. Register a new course");
+                    Console.WriteLine("3. Search course by ID");
+                    Console.WriteLine("4. Search course by Name");
 
-                    case 2:
-                        courseVal = new Course();
-                        Console.Write("Enter Course ID: ");
-                        int courseID = Convert.ToInt32(Console.ReadLine());
-                        Console.Write("Enter Course Name: ");
-                        string courseName = Console.ReadLine();
-                        Console.Write("Enter Course Code: ");
-                        string courseCode = Console.ReadLine();
-                        Console.Write("Enter Course Credit: ");
-                        int courseCredit = Convert.ToInt32(Console.ReadLine());
-                        courseVal = courseVal.RegisterCourse(courseID, courseName, courseCode, courseCredit);
-                        courses.Add(courseVal);
-                        break;
+                    Console.WriteLine("5. Display all students");
+                    Console.WriteLine("6. Register a new student");
+                    Console.WriteLine("7. Search Student by ID"); 
 
 
-                    case 3:
-                        Console.Write("Enter Course ID to search: ");
-                        int courseID_ = Convert.ToInt32(Console.ReadLine());
-                        courseVal = courseVal.FindCourseByID(courses, courseID_);
-                        courseVal.DisplayCourseInfo();
-                        break;
-                    case 4:
-                        Console.Write("Enter Course Name to search: ");
-                        string courseName_ = Console.ReadLine();
-                        courseVal.SearchCourseByName(courses, courseName_);
+                    Console.WriteLine("10. Exit");
+                    Console.Write("Enter your choice: ");
+                    int choice = Convert.ToInt32(Console.ReadLine());
+                    switch (choice)
+                    {
+                        case 1:
+                            courseVal.GetCourseList(courses);
+                            break;
 
-                        break;
+                        case 2:
+                            courseVal = new Course();
+                            Console.Write("Enter Course ID: ");
 
-                    case 5:
+                            // int courseID = Convert.ToInt32(Console.ReadLine());
 
-                        studentVal.GetStudentList(studentList);
+                            string courseIDStr = Console.ReadLine();
+                            int courseID;
+                            if (!int.TryParse(courseIDStr, out courseID))
+                            {
+                                Console.WriteLine("Invalid course ID. Please enter a valid number.");
+                                break;
+                            }
 
-                        break;
-                    case 6:
-                        studentVal = new Student();
-                        // deploy student registration logic here
-                        Console.Write("Enter Student ID: ");
-                        int studentID = Convert.ToInt32(Console.ReadLine());
-                        Console.Write("Enter Student Name: ");
-                        string studentName = Console.ReadLine();
-                        Console.Write("Enter Student Surname: ");
-                        string studentSurname = Console.ReadLine();
-                        Console.Write("Enter Student Email: ");
-                        string studentEmail = Console.ReadLine();
-                        studentVal = studentVal.RegisterStudent(studentID, studentName, studentSurname, studentEmail);
-                        studentList.Add(studentVal);
-                        break;
-                    case 7:
-                        Console.Write("Enter Student ID to search: ");
-                        int studentID_ = Convert.ToInt32(Console.ReadLine());
-                        studentVal = studentVal.FindStudentByID(studentList, studentID_);
-                        studentVal.DisplayStudentInfo();
-                        break;
-                    case 10:
-                        exit = true;
-                        Console.WriteLine("Exiting the program. Goodbye!");
-                        break;
-                    default:
-                        Console.WriteLine("Invalid choice. Please try again.");
-                        break;
+                            Console.Write("Enter Course Name: ");
+                            string courseName = Console.ReadLine();
+                            Console.Write("Enter Course Code: ");
+                            string courseCode = Console.ReadLine();
+                            Console.Write("Enter Course Credit: ");
+
+                            int courseCredit = Convert.ToInt32(Console.ReadLine());
+                            
+                            courseVal = courseVal.RegisterCourse(courseID, courseName, courseCode, courseCredit);
+                            courses.Add(courseVal);
+                            break;
+
+
+                        case 3:
+                            Console.Write("Enter Course ID to search: ");
+                            int courseID_ = Convert.ToInt32(Console.ReadLine());
+                            courseVal = courseVal.FindCourseByID(courses, courseID_);
+                            courseVal.DisplayCourseInfo();
+                            break;
+                        case 4:
+                            Console.Write("Enter Course Name to search: ");
+                            string courseName_ = Console.ReadLine();
+                            courseVal.SearchCourseByName(courses, courseName_);
+
+                            break;
+                        case 5:
+
+                            studentVal.GetStudentList(studentList);
+
+                            break;
+                        case 6:
+                            studentVal = new Student();
+                            // deploy student registration logic here
+                            Console.Write("Enter Student ID: ");
+
+                            // int studentID = Convert.ToInt32(Console.ReadLine());
+
+                            string studentIDStr = Console.ReadLine();
+                            int studentID;
+                            if (!int.TryParse(studentIDStr, out studentID) )
+                            {
+                                // Console.WriteLine("Invalid Student ID. Please enter a valid number.");
+                                //break;
+
+                                throw new Exception("Invalid Student ID. Please enter a valid number.");
+                            }
+
+
+                            Console.Write("Enter Student Name: ");
+                            string studentName = Console.ReadLine();
+                            Console.Write("Enter Student Surname: ");
+                            string studentSurname = Console.ReadLine();
+                            Console.Write("Enter Student Email: ");
+                            string studentEmail = Console.ReadLine();
+                            studentVal = studentVal.RegisterStudent(studentID, studentName, studentSurname, studentEmail);
+                            studentList.Add(studentVal);
+                            break;
+                        case 7:
+                            Console.Write("Enter Student ID to search: ");
+                            int studentID_ = Convert.ToInt32(Console.ReadLine());
+                            studentVal = studentVal.FindStudentByID(studentList, studentID_);
+                            studentVal.DisplayStudentInfo();
+                            break;
+                        case 10:
+                            exit = true;
+                            Console.WriteLine("Exiting the program. Goodbye!");
+                            break;
+                        default:
+                            Console.WriteLine("Invalid choice. Please try again.");
+                            break;
+                    }
+
+                }                
+                catch (FormatException ex)
+                {
+                    Console.WriteLine("Invalid input format. Please enter a valid number.");
+                    Console.WriteLine("Please try again.");
+                    continue;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("An error occurred: " + ex.Message);
+                    Console.WriteLine("Please try again.");
+                    continue;
+                }
+                finally
+                {
+                    // Console.WriteLine("Console Application run successufully");
+
                 }
             }
 
