@@ -1,4 +1,6 @@
-﻿using System.Net.Http.Headers;
+﻿using DAL.Data;
+using Microsoft.Extensions.Configuration;
+using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
 
 namespace Console_Class_Student_01_ProgrammingBasic2
@@ -7,6 +9,15 @@ namespace Console_Class_Student_01_ProgrammingBasic2
     {
         static void Main(string[] args)
         {
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
+                .Build();
+
+            var studentRepository = new StudentRepository(configuration);
+
+            var studentService = new StudentService(studentRepository);
+
             Course course = new Course();
             course.CourseID = 1;
             course.CourseName = "Programming Basic 2";
