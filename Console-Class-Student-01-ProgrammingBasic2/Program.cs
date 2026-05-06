@@ -1,4 +1,5 @@
 ﻿using System.Net.Http.Headers;
+using System.Text.RegularExpressions;
 
 namespace Console_Class_Student_01_ProgrammingBasic2
 {
@@ -193,7 +194,11 @@ namespace Console_Class_Student_01_ProgrammingBasic2
                             Console.Write("Enter Student Surname: ");
                             string studentSurname = Console.ReadLine();
                             Console.Write("Enter Student Email: ");
-                            string studentEmail = Console.ReadLine();
+                            string studentEmail = Console.ReadLine() ?? string.Empty;
+                            if (!isValidEmail(studentEmail))
+                            {
+                                throw new Exception("Invalid email format. Please enter a valid email.");
+                            }
                             studentVal = studentVal.RegisterStudent(studentID, studentName, studentSurname, studentEmail);
                             studentList.Add(studentVal);
                             break;
@@ -233,6 +238,12 @@ namespace Console_Class_Student_01_ProgrammingBasic2
             }
 
             Console.ReadLine();
+        }
+    
+        public static bool isValidEmail(string email)
+        {
+            string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            return Regex.IsMatch(email, pattern);
         }
     }
 }
