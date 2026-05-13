@@ -16,5 +16,7 @@ namespace Console_Class_Student_01_ProgrammingBasic2
             _studentRepository = studentRepository;
         }
 
+
+
     }
 }
