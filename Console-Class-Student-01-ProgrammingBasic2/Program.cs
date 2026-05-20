@@ -179,7 +179,7 @@ namespace Console_Class_Student_01_ProgrammingBasic2
                             break;
                         case 5:
 
-                            studentVal.GetStudentList(studentList);
+                            studentService.DisplayAllStudentsAsync().Wait();
 
                             break;
                         case 6:

@@ -8,6 +8,7 @@ namespace DAL.Data.Interfaces
 {
     public interface IStudentRepository
     {
+        Task<IReadOnlyList<Models.Student>> GetAllAsync();
 
     }
 }
