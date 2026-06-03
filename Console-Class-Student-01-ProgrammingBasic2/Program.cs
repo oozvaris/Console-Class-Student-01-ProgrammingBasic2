@@ -32,7 +32,8 @@ namespace Console_Class_Student_01_ProgrammingBasic2
 
                     Console.WriteLine("5. Display all students");
                     Console.WriteLine("6. Register a new student");
-                    Console.WriteLine("7. Search Student by ID"); 
+                    Console.WriteLine("7. Search Student by ID");
+                    Console.WriteLine("8. Search Student by Name");
 
 
                     Console.WriteLine("10. Exit");
@@ -63,6 +64,12 @@ namespace Console_Class_Student_01_ProgrammingBasic2
                             int studentId = Convert.ToInt32(Console.ReadLine());
                             studentService.DisplayStudentByIdAsync(studentId).Wait();
                             // deploy student search by ID logic here
+                            break;
+                        case 8:
+                            Console.Write("Enter Student Name to search: ");
+                            string studentName = Console.ReadLine();
+                            studentService.DisplayStudentByNameAsync(studentName).Wait();
+                            // deploy student search by Name logic here
                             break;
                         case 10:
                             exit = true;
