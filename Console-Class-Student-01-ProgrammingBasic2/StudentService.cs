@@ -29,7 +29,22 @@ namespace Console_Class_Student_01_ProgrammingBasic2
             }
         }
 
-
+        public async Task DisplayStudentByIdAsync(int studentId)
+        {
+            var student = await _studentRepository.GetByIdAsync(studentId);
+            if (student != null)
+            {
+                Console.WriteLine(
+                    $"Student ID: {student.StudentID}, " +
+                    $"Student Name: {student.StudentName}, " +
+                    $"Student Surname: {student.StudentSurname}, " +
+                    $"Student Email: {student.StudentEmail}");
+            }
+            else
+            {
+                Console.WriteLine($"No student found with ID: {studentId}");
+            }
+        }
 
     }
 }

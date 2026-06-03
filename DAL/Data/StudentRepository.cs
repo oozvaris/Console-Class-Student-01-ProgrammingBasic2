@@ -24,10 +24,10 @@ namespace DAL.Data
         public async Task<IReadOnlyList<Student>> GetAllAsync()
         { 
             var students = new List<Student>();
-            const string sql =  """
+            const string sql = """
                                 SELECT StudentID, StudentName, StudentSurname, 
                                     StudentEmail 
-                                FROM Student
+                                FROM Student ORDER BY StudentName
                                 """;
 
             await using var connection = new SqlConnection(_connectionString);
@@ -48,6 +48,48 @@ namespace DAL.Data
             }
 
             return students;
+        }
+
+        public async Task<Student?> GetByIdAsync(int StudentID)
+        {
+            var student = new Student();
+            //SQL Clouse
+            const string sql = """
+                                SELECT StudentID, StudentName, StudentSurname, 
+                                    StudentEmail 
+                                FROM Student
+                                WHERE StudentID = @StudentID
+                                ORDER BY StudentName 
+                                """;
+
+            // SQL Connection
+            await using var connection = new SqlConnection(_connectionString);
+            await using var command = new SqlCommand(sql, connection);
+
+            // Add Parameter
+            command.Parameters.AddWithValue("@StudentID", StudentID);
+
+            await connection.OpenAsync();
+            await using var reader = await command.ExecuteReaderAsync();
+
+            //Read Data
+            if(await  reader.ReadAsync())
+            {
+                student = new Student
+                {
+                    StudentID = reader.GetInt32(reader.GetOrdinal("StudentID")),
+                    StudentName = reader.GetString(reader.GetOrdinal("StudentName")),
+                    StudentSurname = reader.GetString(reader.GetOrdinal("StudentSurname")),
+                    StudentEmail = reader.GetString(reader.GetOrdinal("StudentEmail"))
+
+                };
+
+                return student;
+
+            }
+
+            return null;
+
         }
 
     }

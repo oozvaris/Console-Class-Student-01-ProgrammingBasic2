@@ -15,103 +15,9 @@ namespace Console_Class_Student_01_ProgrammingBasic2
                 .Build();
 
             var studentRepository = new StudentRepository(configuration);
-
             var studentService = new StudentService(studentRepository);
 
-            Course course = new Course();
-            course.CourseID = 1;
-            course.CourseName = "Programming Basic 2";
-            course.CourseCode = "PB2";
-            course.CourseCredit = 3;
-
-            Course course2 = new Course();
-            course2.CourseID = 2;
-            course2.CourseName = "Data Structure";
-            course2.CourseCode = "DS";
-            course2.CourseCredit = 3;
-
-            Course course3 = new Course();
-            course3.CourseID = 3;
-            course3.CourseName = "Database Management System";
-            course3.CourseCode = "DBMS";
-            course3.CourseCredit = 2;
-
-            List<Course> courses = new List<Course>();
-            courses.Add(course);
-            courses.Add(course2);
-            courses.Add(course3);
-
-            Console.WriteLine("Course List:" + courses.Count() + " courses in my School");
-            foreach (Course c in courses)
-            {
-                Console.WriteLine(
-                    $"Course ID: {c.CourseID}, " +
-                    $"Course Name: {c.CourseName}, " +
-                    $"Course Code: {c.CourseCode}, " +
-                    $"Course Credit: {c.CourseCredit}");
-            }
-            // Console.ReadLine();
-
-            //for (int i = 0; i < courses.Count(); i++)
-            //{
-            //    Course c = courses[i];
-            //    Console.WriteLine(
-            //        $"Course ID: {c.CourseID}, " +
-            //        $"Course Name: {c.CourseName}, " +
-            //        $"Course Code: {c.CourseCode}, " +
-            //        $"Course Credit: {c.CourseCredit}");
-            //}
-
-
-            //while (true)
-            //{
-            //    Console.WriteLine("Enter Course ID to search:");
-            //    int courseID = Convert.ToInt32(Console.ReadLine());
-            //    Course foundCourse = courses.FirstOrDefault(c => c.CourseID == courseID);
-
-            //    if (foundCourse != null)
-            //    {
-            //        Console.WriteLine(
-            //            $"Course ID: {foundCourse.CourseID}, " +
-            //            $"Course Name: {foundCourse.CourseName}, " +
-            //            $"Course Code: {foundCourse.CourseCode}, " +
-            //            $"Course Credit: {foundCourse.CourseCredit}");
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("Course not found.");
-            //    }
-            //}
-
-
-            //while (true)
-            //{
-
-            //    Console.WriteLine("Enter Course Name to search:");
-            //    string courseName = Console.ReadLine();
-            //    List<Course> lstCourse = courses.Where(
-            //        c => c.CourseName.Contains(courseName)
-            //        ).ToList();
-
-            //    foreach (Course c in lstCourse)
-            //    {
-            //        Console.WriteLine(
-            //            $"Course ID: {c.CourseID}, " +
-            //            $"Course Name: {c.CourseName}, " +
-            //            $"Course Code: {c.CourseCode}, " +
-            //            $"Course Credit: {c.CourseCredit}");
-            //    }
-
-
-            //}
-
-            Course courseVal = new Course();
-            Student studentVal = new Student();
-
-            List<Student> studentList = new List<Student>();
-
-            //apply try catch block to handle exceptions for user input
-
+           
             // Display menu
             bool exit = false;
             while (!exit)
@@ -135,89 +41,28 @@ namespace Console_Class_Student_01_ProgrammingBasic2
                     switch (choice)
                     {
                         case 1:
-                            courseVal.GetCourseList(courses);
+                            // deploy course display logic here                             
                             break;
-
                         case 2:
-                            courseVal = new Course();
-                            Console.Write("Enter Course ID: ");
-
-                            // int courseID = Convert.ToInt32(Console.ReadLine());
-
-                            string courseIDStr = Console.ReadLine();
-                            int courseID;
-                            if (!int.TryParse(courseIDStr, out courseID))
-                            {
-                                Console.WriteLine("Invalid course ID. Please enter a valid number.");
-                                break;
-                            }
-
-                            Console.Write("Enter Course Name: ");
-                            string courseName = Console.ReadLine();
-                            Console.Write("Enter Course Code: ");
-                            string courseCode = Console.ReadLine();
-                            Console.Write("Enter Course Credit: ");
-
-                            int courseCredit = Convert.ToInt32(Console.ReadLine());
-                            
-                            courseVal = courseVal.RegisterCourse(courseID, courseName, courseCode, courseCredit);
-                            courses.Add(courseVal);
+                            // deploy course registration logic here
                             break;
-
-
                         case 3:
-                            Console.Write("Enter Course ID to search: ");
-                            int courseID_ = Convert.ToInt32(Console.ReadLine());
-                            courseVal = courseVal.FindCourseByID(courses, courseID_);
-                            courseVal.DisplayCourseInfo();
+                            // deploy course search by ID logic here
                             break;
                         case 4:
-                            Console.Write("Enter Course Name to search: ");
-                            string courseName_ = Console.ReadLine();
-                            courseVal.SearchCourseByName(courses, courseName_);
-
+                            // deploy course search by Name logic here
                             break;
                         case 5:
-
                             studentService.DisplayAllStudentsAsync().Wait();
-
                             break;
                         case 6:
-                            studentVal = new Student();
                             // deploy student registration logic here
-                            Console.Write("Enter Student ID: ");
-
-                            // int studentID = Convert.ToInt32(Console.ReadLine());
-
-                            string studentIDStr = Console.ReadLine();
-                            int studentID;
-                            if (!int.TryParse(studentIDStr, out studentID) )
-                            {
-                                // Console.WriteLine("Invalid Student ID. Please enter a valid number.");
-                                //break;
-
-                                throw new Exception("Invalid Student ID. Please enter a valid number.");
-                            }
-
-
-                            Console.Write("Enter Student Name: ");
-                            string studentName = Console.ReadLine();
-                            Console.Write("Enter Student Surname: ");
-                            string studentSurname = Console.ReadLine();
-                            Console.Write("Enter Student Email: ");
-                            string studentEmail = Console.ReadLine() ?? string.Empty;
-                            if (!isValidEmail(studentEmail))
-                            {
-                                throw new Exception("Invalid email format. Please enter a valid email.");
-                            }
-                            studentVal = studentVal.RegisterStudent(studentID, studentName, studentSurname, studentEmail);
-                            studentList.Add(studentVal);
                             break;
                         case 7:
                             Console.Write("Enter Student ID to search: ");
-                            int studentID_ = Convert.ToInt32(Console.ReadLine());
-                            studentVal = studentVal.FindStudentByID(studentList, studentID_);
-                            studentVal.DisplayStudentInfo();
+                            int studentId = Convert.ToInt32(Console.ReadLine());
+                            studentService.DisplayStudentByIdAsync(studentId).Wait();
+                            // deploy student search by ID logic here
                             break;
                         case 10:
                             exit = true;
